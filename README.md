@@ -1,3 +1,8 @@
+# IMPORTANT
+
+This is an outdated, potentially broken version that was NOT maintained by me. A full rewrite is occuring in the **next** branch (yet to be made).
+Using this may be error prone!
+
 # world-generator
 
 The World Generator inspired by [Minecraft Earth Map](https://earth.motfe.net/) but runs in parallel.
