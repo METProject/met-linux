@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "met-linux"
+version = "0.1.0"
+description = "Dockerized Earth Map Generator for Minecraft - (earth.motfe.net)"
+authors = ["imide <imide@imide.is-a.dev>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+numba = "^0.60.0"
+osmium = "^4.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+

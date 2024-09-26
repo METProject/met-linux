@@ -1,57 +1,50 @@
-# IMPORTANT
+# MET-Linux
 
-This is an outdated, potentially broken version that was NOT maintained by me. A full rewrite is occuring in the **next** branch (yet to be made).
-Using this may be error prone!
+Dockerized and parallelized version of the [Minecraft Earth Map](https://earth.motfe.net/) generator.
+Recently open sourced!
 
-# world-generator
+## Installation - INCOMPLETE DOCUMENTATION, PLEASE WAIT
 
-The World Generator inspired by [Minecraft Earth Map](https://earth.motfe.net/) but runs in parallel.
+We recommend using [Docker](https://docs.docker.com/get-docker/) with [Docker Compose](https://docs.docker.com/compose/install/) to run the generator. However, you can still run it from source.and
 
-## Usage
+### Docker Compose (recommended)
 
-0. Docker is required to run the world generator. Please install Docker first. See [Docker Installation](https://docs.docker.com/get-docker/).
-1. Download all the required data. See [Tiles Installation](https://earth.motfe.net/tiles-installation/).Put them all in the `Data` folder and unzip.
-2. Download the project Copy the `config.example.yaml` to `config.yaml` and modify the `config.yaml` to your needs.
-3. Run the following command in the project root directory.
-
+Ensure you have Docker and Docker Compose installed.
 ```bash
-docker pull alicespaceli/trumancrafts_builder:v0.0.3
-docker run -idt --rm -v $(pwd):/workspace alicespaceli/trumancrafts_builder:v0.0.3
+docker -v
+docker compose
 ```
 
-You can check the progress by just looking into the `generator.log`.
+Then, continue to the Wiki page for [Installation](https://github.com/imide/met-linux/wiki/Installation).
 
-The folders in the project, all the folder names should be the same as your `config.yaml`
+### Docker (legacy)
 
-```
-.
-├── Data                 /* `scripts_folder_path` in config, unzip the worldpainter-script.zip here */
-│   ├── voidscript.js
-│   ├── worldpainter-script.zip
-│   ├── wpscript
-│   ├── wpscript.js
-│   ├── osm              /* `osm_folder_path` in config, osm files will be generated here */
-│   │   └── all
-│   ├── qgis-bathymetry  /* unzip the qgis-bathymetry.zip here */
-│   │   └── QGIS
-│   ├── qgis-heightmap   /* unzip the qgis-heightmap.zip.001... here */
-│   │   └── QGIS
-│   ├── qgis-terrain     /* unzip the qgis-terrain.zip here */
-│   │   └── QGIS
-│   ├── qgis-project     /* unzip the qgis-project.zip here */
-│   │   └── QGIS
-│   └── wpscript
-│       ├── backups
-│       ├── exports
-│       ├── farm
-│       ├── layer
-│       ├── ocean
-│       ├── ores
-│       ├── roads
-│       ├── schematics
-│       ├── terrain
-│       └── worldpainter_files
-├── Docker
+Documentation is incomplete. Follow (legacy instructions)[https://github.com/imide/met-linux/tree/main] at your own risk.
 
+## Contributing
 
-```
+Contributions are welcome!
+
+## TODO/Checklist
+
+- [x] Finish this checklist
+- [ ] Rewrite the legacy generator with optimised code
+- [ ] Add better documentation (wiki pages or docs website on installation, usage, etc.)
+- [ ] Merge the bash processor for speed improvements (possibly up to 4x)?
+- [ ] Release beta version 0.1.0
+
+### Stable Release
+
+- [ ] Automate downloading of the required data with either configuration (most likely) or a script
+- [ ] Stability improvements
+- [ ] Rewrite in lower level language? (C++ as all the neccessary libraries are already available)
+
+## License
+
+This project is licensed under the GNU AGPLv3 License as per (upstream)[https://github.com/DerMattinger/MinecraftEarthTiles] - see the [LICENSE](LICENSE) file for details.
+
+## Credits
+
+- [DerMattinger](https://github.com/DerMattinger) - for the original [Minecraft Earth Tiles](https://earth.motfe.net/) project.
+- [imide](https://github.com/imide) - for the [MET Linux](https://github.com/imide/met-linux) project.
+- [AliceSpaceLi](https://github.com/AliceSpaceLi) - for the [world-generator](https://github.com/truman-crafts/world-generator) project (legacy generator).
