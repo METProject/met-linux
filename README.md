@@ -5,7 +5,7 @@ Recently open sourced!
 
 ## Installation - INCOMPLETE DOCUMENTATION, PLEASE WAIT
 
-We recommend using [Docker](https://docs.docker.com/get-docker/) with [Docker Compose](https://docs.docker.com/compose/install/) to run the generator. However, you can still run it from source.and
+We recommend using [Docker](https://docs.docker.com/get-docker/) with [Docker Compose](https://docs.docker.com/compose/install/) to run the generator. However, you can still run it from source (Nix is required to avoid issues!)
 
 ### Docker Compose (recommended)
 
@@ -21,6 +21,29 @@ Then, continue to the Wiki page for [Installation](https://github.com/imide/met-
 
 Documentation is incomplete. Follow (legacy instructions)[https://github.com/imide/met-linux/tree/main] at your own risk.
 
+## Development
+
+### Nix
+
+To set up a development environment, the following is needed:
+
+- A UNIX-like environment (Linux, macOS, WSL, etc.)
+- Nix (see [Determinate Systems](https://github.com/DeterminateSystems/nix-installer))
+- [Direnv](https://direnv.net/) hooked into [shell](https://direnv.net/docs/hook.html)
+- Git (duh)
+
+Then, run the following commands:
+
+```bash
+git clone https://github.com/imide/met-linux.git
+cd met-linux
+direnv allow
+
+# Open your IDE of choice from the shell (to avoid nix-related issues) and start developing! For example with VSCodium or Cursor:
+cursor .
+codium .
+```
+
 ## Contributing
 
 Contributions are welcome!
@@ -28,7 +51,7 @@ Contributions are welcome!
 ## TODO/Checklist
 
 - [x] Finish this checklist
-- [ ] Rewrite the legacy generator with optimised code
+- [ ] Rewrite in Go and bash
 - [ ] Add better documentation (wiki pages or docs website on installation, usage, etc.)
 - [ ] Merge the bash processor for speed improvements (possibly up to 4x)?
 - [ ] Release beta version 0.1.0
@@ -37,7 +60,6 @@ Contributions are welcome!
 
 - [ ] Automate downloading of the required data with either configuration (most likely) or a script
 - [ ] Stability improvements
-- [ ] Rewrite in lower level language? (C++ as all the neccessary libraries are already available)
 
 ## License
 
