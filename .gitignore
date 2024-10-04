@@ -69,3 +69,6 @@ Temporary Items
 
 # direnv/nix
 .direnv
+
+# precommit hooks
+.pre-commit-config.yaml

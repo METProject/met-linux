@@ -1,3 +1,3 @@
-module example.com/gomod2nix-template
+module github.com/imide/met-linux
 
-go 1.17
+go 1.23

@@ -53,6 +53,15 @@
         in
           builtins.toString script;
       };
+
+      commitizen = {
+        enable = true;
+        name = "commitizen";
+        description = "Commit using conventional commits";
+        entry = "${pkgs.commitizen}/bin/cz";
+        require_serial = true;
+        pass_filenames = false;
+      };
     };
   };
 in
@@ -66,6 +75,8 @@ in
       pkgs.gotools
       pkgs.go-junit-report
       pkgs.go-task
-      pkgs.gcc
+      pkgs.commitizen
     ];
+
+    buildInputs = [(pkgs.callPackage ./pkgs/worldpainter.nix {})];
   }
