@@ -69,4 +69,5 @@ This project is licensed under the GNU AGPLv3 License as per (upstream)[https://
 
 - [DerMattinger](https://github.com/DerMattinger) - for the original [Minecraft Earth Tiles](https://earth.motfe.net/) project.
 - [imide](https://github.com/imide) - for the [MET Linux](https://github.com/imide/met-linux) project.
+- [MeerBiene](https://github.com/MeerBiene) - for the shell implementation (not in this project yet) of the osmium generator. (literally made this possible to make without python)
 - [AliceSpaceLi](https://github.com/AliceSpaceLi) - for the [world-generator](https://github.com/truman-crafts/world-generator) project (legacy generator).
