@@ -76,7 +76,10 @@ in
       pkgs.go-junit-report
       pkgs.go-task
       pkgs.commitizen
+
+      # vscode needed things
+      pkgs.gopls
     ];
 
-    buildInputs = [(pkgs.callPackage ./pkgs/worldpainter.nix {})];
+    buildInputs = [(pkgs.callPackage ./pkgs/worldpainter.nix {}) (pkgs.callPackage ./pkgs/minutor.nix {})];
   }

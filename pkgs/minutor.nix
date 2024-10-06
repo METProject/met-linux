@@ -1,5 +1,3 @@
-# TODO: Make this actually compile. Currently, its complaining because Minutor is usually a GUI app with CLI capabilities. They are the same executable. Also, this doesn't work on my macbook (expected).
-# This project is not planned on supporting macOS, so I'm not going to spend time on it. Just annoying with my dev environment. Anyone who knows Nix and on a desktop, please help me out. :yikes:
 {
   stdenv,
   fetchFromGitHub,
@@ -15,12 +13,12 @@ in
   stdenv.mkDerivation {
     dontWrapQtApps = true;
     pname = "minutor";
-    version = "2.20.0";
+    version = "2.21.0";
     src = fetchFromGitHub {
       owner = "mrkite";
       repo = "minutor";
-      rev = "2.20.0";
-      sha256 = "1i0g0vb1q4160mz787sv05j30531ih66b1m8hbb44srrzmihm1bi";
+      rev = "2.21.0";
+      sha256 = "0ldjnrk429ywf8cxdpjkam5k73s6fq7lvksandfn3xn7gl9np5rk";
     };
 
     nativeBuildInputs = [
@@ -28,6 +26,7 @@ in
       vcpkg
       vcpkg-tool
       (
+        # i work on my macbook and gdb is not available. script is linux anyway, so this is just for me :)
         if !isDarwin
         then gdb
         else null
@@ -39,10 +38,15 @@ in
     ];
 
     configurePhase = ''
-      qmake
+      qmake -makefile
     '';
 
     buildPhase = ''
-      make
+      make -j$NIX_BUILD_CORES
+    '';
+    # fixes install phase error (no such file or directory)
+    installPhase = ''
+      mkdir -p $out/bin
+      cp minutor $out/bin
     '';
   }
