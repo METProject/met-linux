@@ -72,3 +72,6 @@ Temporary Items
 
 # precommit hooks
 .pre-commit-config.yaml
+
+# mkdocs
+site/

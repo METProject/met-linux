@@ -1,0 +1,81 @@
+site_name: MET Linux Documentation
+site_url: https://metproject.github.io/met-linux
+repo_url: https://github.com/METProject/met-linux
+copyright: Copyright &copy; 2024 MET Project
+
+theme:
+  name: material
+  font:
+    text: Lexend Deca
+    code: JetBrains Mono
+    
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - toc.integrate
+    - content.code.annotate
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: purple
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: purple
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - privacy:
+      enabled: true
+      cache: true
+      cache_dir: .cache/plugins/privacy
+      log: true
+      assets: true
+      assets_fetch: true
+      assets_fetch_dir: assets/external
+      links: true
+      links_noopener: true  
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - footnotes
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - "Getting Started":
+      - "Prerequisites": getting-started/prerequisites.md
+      - "Installation": getting-started/installation.md
+      - "Configuration": getting-started/configuration.md
+      - "Usage": getting-started/usage.md
+  - Development:
+      - "Contributing": development/contributing.md
+      - "Development Environment": development/devenv.md
+
+
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/METProject/met-linux
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/W2yqbn6
+
+

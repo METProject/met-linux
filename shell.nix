@@ -17,6 +17,8 @@
 }: let
   goEnv = mkGoEnv {pwd = ./.;};
 
+  pyPackages = ps: with ps; [pkgs.python311Packages.mkdocs-material pkgs.python311Packages.mkdocs pkgs.python311Packages.mkdocs-material-extensions];
+
   pre-commit-check = pre-commit-hooks.lib.${pkgs.system}.run {
     src = ./.;
     hooks = {
@@ -27,7 +29,6 @@
         description = "Lint my golang code";
         files = "\.go$";
         entry = "${pkgs.golangci-lint}/bin/golangci-lint run --new-from-rev HEAD --fix";
-        require_serial = true;
         pass_filenames = false;
       };
       goimports = {
@@ -74,12 +75,21 @@ in
       pkgs.go_1_23
       pkgs.gotools
       pkgs.go-junit-report
-      pkgs.go-task
       pkgs.commitizen
+      pkgs.just
 
       # vscode needed things
       pkgs.gopls
+
+      # GIS/related to gen
+      pkgs.qgis-ltr
+      pkgs.imagemagick
+
+      # Documentation
+      pkgs.python311
+      (pkgs.python311.withPackages pyPackages)
     ];
 
     buildInputs = [(pkgs.callPackage ./pkgs/worldpainter.nix {}) (pkgs.callPackage ./pkgs/minutor.nix {})];
+    require_serial = true;
   }
