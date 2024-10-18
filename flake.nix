@@ -30,6 +30,8 @@
       devShells.default = callPackage ./shell.nix {
         inherit (gomod2nix.legacyPackages.${system}) mkGoEnv gomod2nix;
         inherit pre-commit-hooks;
+
+        formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
       };
     })
   );

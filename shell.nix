@@ -68,25 +68,25 @@
 in
   pkgs.mkShell {
     inherit (pre-commit-check) shellHook;
-    packages = [
+    packages = with pkgs; [
       goEnv
       gomod2nix
-      pkgs.golangci-lint
-      pkgs.go_1_23
-      pkgs.gotools
-      pkgs.go-junit-report
-      pkgs.commitizen
-      pkgs.just
+      golangci-lint
+      go_1_23
+      gotools
+      go-junit-report
+      commitizen
+      just
 
       # vscode needed things
-      pkgs.gopls
+      gopls
 
       # GIS/related to gen
-      pkgs.qgis-ltr
-      pkgs.imagemagick
+      qgis-ltr
+      imagemagick
 
       # Documentation
-      pkgs.python311
+      python311
       (pkgs.python311.withPackages pyPackages)
     ];
 

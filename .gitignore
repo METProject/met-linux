@@ -75,3 +75,6 @@ Temporary Items
 
 # mkdocs
 site/
+
+# cache
+.cache
