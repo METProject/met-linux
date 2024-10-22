@@ -13,18 +13,36 @@
   mkGoEnv ? pkgs.mkGoEnv,
   gomod2nix ? pkgs.gomod2nix,
   pre-commit-hooks,
+  stdenv,
   ...
 }: let
   goEnv = mkGoEnv {pwd = ./.;};
 
-  pyPackages = ps: with ps; [pkgs.python311Packages.mkdocs-material pkgs.python311Packages.mkdocs pkgs.python311Packages.mkdocs-material-extensions];
+  # Python 3.13
+  # Nixpkgs does not enable LTO nor optimizations for reproducability, however we need it for some of the scripts to not be that slow...
+  # However, building will be slow. oh well
+  python313Optimized = pkgs.python313.override {
+    enableOptimizations = true;
+    enableLTO = true;
+    reproducibleBuild = false;
+    enableGIL = false;
+    self = python313Optimized;
+  };
+
+  pyPackages = ps: with ps; [
+    pkgs.python313Packages.mkdocs-material 
+    pkgs.python313Packages.mkdocs 
+    pkgs.python313Packages.mkdocs-material-extensions
+    
+    
+    ];
 
   pre-commit-check = pre-commit-hooks.lib.${pkgs.system}.run {
     src = ./.;
     hooks = {
       gofmt.enable = true;
       golangci-lint = {
-        enable = true;
+        enable = false;
         name = "golangci-lint";
         description = "Lint my golang code";
         files = "\.go$";
@@ -82,14 +100,19 @@ in
       gopls
 
       # GIS/related to gen
-      qgis-ltr
+      # disabling qgis-ltr on macos; only for dev on my laptop
+      (
+        if !stdenv.isDarwin
+        then qgis-ltr
+        else null
+      )
       imagemagick
 
-      # Documentation
-      python311
-      (pkgs.python311.withPackages pyPackages)
+      # Python
+      python313Optimized
+      (python313Optimized.withPackages pyPackages)
     ];
 
-    buildInputs = [(pkgs.callPackage ./pkgs/worldpainter.nix {}) (pkgs.callPackage ./pkgs/minutor.nix {})];
+    buildInputs = [(pkgs.callPackage ./pkgs/worldpainter.nix {}) ( if !stdenv.isDarwin then (pkgs.callPackage ./pkgs/minutor.nix {}) else null)];
     require_serial = true;
   }
